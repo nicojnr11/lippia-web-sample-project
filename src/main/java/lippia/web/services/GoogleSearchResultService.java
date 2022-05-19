@@ -1,6 +1,7 @@
 package lippia.web.services;
 
 import com.crowdar.core.actions.ActionManager;
+import com.crowdar.core.actions.WebActionManager;
 import lippia.web.constants.GoogleConstants;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -17,6 +18,7 @@ public class GoogleSearchResultService extends ActionManager {
     }
 
     public static void verifyResults(){
+        WebActionManager.waitVisibility(GoogleConstants.STATS_ID);
         Assert.assertFalse(getStats().isEmpty());
     }
 }
