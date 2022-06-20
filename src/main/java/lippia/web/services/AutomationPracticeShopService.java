@@ -1,15 +1,15 @@
 package lippia.web.services;
 
 import com.crowdar.core.actions.ActionManager;
-import lippia.web.constants.AutomationPracticeShopConstants;
+import lippia.web.constants.ShopPageConstants;
 import org.testng.Assert;
-import static lippia.web.constants.AutomationPracticeShopConstants.SLIDER_HOME_ID;
+import static lippia.web.constants.ShopPageConstants.SLIDER_HOME_ID;
 
 
 public class AutomationPracticeShopService extends ActionManager {
 
     public static void clickInHome() {
-        click(AutomationPracticeShopConstants.BUTTON_HOME_XPATH);
+        click(ShopPageConstants.BUTTON_HOME_XPATH);
     }
 
     public static void verificarSliderHome() {

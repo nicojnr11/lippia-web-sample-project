@@ -1,6 +1,6 @@
 package lippia.web.constants;
 
-public class AutomationPracticeMyAccountDashboardConstants {
+public class MyAccountPageConstants {
 
     public static final String BUTTON_SHOP_MENU_ID = "xpath://*[@id=\"page-36\"]/div/div[1]/div/p[1]/strong";
     public static final String BUTTON_DASHBOARD_XPATH = "xpath://*[@id=\"page-36\"]/div/div[1]/nav/ul/li[1]/a";

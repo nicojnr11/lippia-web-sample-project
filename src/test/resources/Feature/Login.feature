@@ -1,25 +1,31 @@
 Feature: Login practice
 
-  Scenario Outline:
+  Background:
+    Given The user naviga to in the page automation
 
-  3) Click on My Account Menu
-  4) Enter the case changed username in username textbox
-  5) Enter the case chenged password in the password tetxbox
-  6) Now click on login button
-  7) Login must fail saying incorrect username/password.
+  Scenario Outline: Login-Handles case sensitive
 
-    Examples:
-
-
-  Scenario Outline:
-
-  3) Click on My Account Menu
-  4) Enter the case changed username in username textbox
-  5) Enter the case chenged password in the password tetxbox
-  6) Now click on login button
-  7) Once your are logged in, sign out of the site
-  8) Now press back button
-  9) User shouldn’t be signed in to his account rather a general webpage must be visible
+  Given Click on My Account Menu
+  When Enter the case changed <username> in username textbox
+  And Enter the case chenged <password> in the password tetxbox
+  And Now click on login button
+  Then Login must fail saying incorrect username-password with show <message>
 
     Examples:
+    |username|password|message|
+    |        |        |       |
 
+
+  Scenario Outline: Login-Authentication
+
+    Given Click on My Account Menu
+    When Enter the case changed <username> in username textbox
+    And Enter the case chenged <password> in the password tetxbox
+    And Now click on login button
+    And Once your are logged in, sign out of the site
+    And Now press back button
+    Then User shouldn’t be signed in to his account rather a general webpage must be visible
+
+    Examples:
+      |username|password|message|
+      |        |        |       |

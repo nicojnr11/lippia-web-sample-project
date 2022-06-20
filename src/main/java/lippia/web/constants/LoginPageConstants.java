@@ -1,6 +1,6 @@
 package lippia.web.constants;
 
-public class AutomationPracticeLoginConstants {
+public class LoginPageConstants {
 
     public static final String INPUT_USER_EMAIL_ID = "id:username";
     public static final String INPUT_USER_PASSWORD_ID = "id:password";
