@@ -2,6 +2,7 @@ package lippia.web.services;
 
 import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
+import com.crowdar.core.actions.WebActionManager;
 import lippia.web.constants.AutomationPracticeConstants;
 
 import static com.crowdar.core.actions.WebActionManager.navigateTo;
@@ -17,6 +18,9 @@ public class AutomationPracticeService extends ActionManager {
         click(AutomationPracticeConstants.BUTTON_SHOP_MENU_ID);
     }
 
-    public static void irAMyAccount() { click(AutomationPracticeConstants.BUTTON_MY_ACCOUNT_XPATH); }
+    public static void irAMyAccount() {
+        WebActionManager.waitVisibility(AutomationPracticeConstants.BUTTON_MY_ACCOUNT_XPATH);
+        WebActionManager.click(AutomationPracticeConstants.BUTTON_MY_ACCOUNT_XPATH);
+    }
 
 }

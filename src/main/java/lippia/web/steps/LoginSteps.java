@@ -5,55 +5,63 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lippia.web.services.AutomationPracticeLoginService;
+import lippia.web.services.LoginService;
 import lippia.web.services.AutomationPracticeService;
-import lippia.web.services.AutomationPracticeShopService;
 
 public class LoginSteps extends PageSteps {
 
-    @Given("The user naviga to in the page automation")
+    @Given("El usuario navega en la pagina automation")
     public void elUsuarioIngresaEnLaWebDeAutomationPractice() {
         AutomationPracticeService.navegarWeb();
     }
 
-    @Given("Click on My Account Menu")
-    public void clickOnMyAccountMenu() {
-        AutomationPracticeService.irAMyAccount();
+    @When("El usuario completa el campo user con (.*)")
+    public void elUsuarioCompletaElCampoUserConUsername(String userName) {
+        LoginService.setEmail(userName);
     }
 
-    @When("Enter the case changed (.*) in username textbox")
-    public void enterTheCaseChangedUsernameInUsernameTextbox(String userName) {
-        AutomationPracticeLoginService.setEmail(userName);
+    @And("El usuario completa el campo password con (.*)")
+    public void elUsuarioCompletaElCampoPasswordConPassword(String password) {
+        LoginService.setPassword(password);
     }
 
-    @And("Enter the case chenged (.*) in the password tetxbox")
-    public void enterTheCaseChengedPasswordInThePasswordTetxbox(String password) {
-        AutomationPracticeLoginService.setPassword(password);
+    @And("El usuario realiza un click en el boton de Login")
+    public void elUsuarioRealizaUnClickEnElBotonDeLogin() {
+        LoginService.clickLogin();
     }
 
-    @And("Now click on login button")
-    public void nowClickOnLoginButton() {
-        AutomationPracticeLoginService.clickLogin();
+    @Then("se verifica que esta en la pantalla principal")
+    public void seVerificaQueEstaEnLaPantallaPrincipal() {
+        LoginService.verifyPageLogin();
     }
 
-    @Then("Login must fail saying incorrect username-password with show (.*)")
-    public void loginMustFailSayingIncorrectUsernamePasswordWithShowMessage(String message) {
-        AutomationPracticeLoginService.verificarMensajeError(message);
+    @When("El usuario completa el campo email con (.*) en Email-Address")
+    public void enterValidEmailAddressInEmailAddressTextbox(String email) {
+        LoginService.setEmail(email);
     }
 
-    @And("Once your are logged in, sign out of the site")
-    public void onceYourAreLoggedInSignOutOfTheSite() {
-        AutomationPracticeLoginService.singOut();
+    @And("El usuario no ingresa datos en el campo Password")
+    public void enterEmptyPasswordInPasswordTextbox() {
+        LoginService.verifyTextboxPassword();
     }
 
-
-    @And("Now press back button")
-    public void nowPressBackButton() {
-        AutomationPracticeLoginService.gotoBack();
+    @And("El usuario realiza un click en el boton Register")
+    public void clickOnRegisterButton() {
+        LoginService.clickRegister();
     }
 
-    @Then("User shouldn’t be signed in to his account rather a general webpage must be visible")
-    public void userShouldnTBeSignedInToHisAccountRatherAGeneralWebpageMustBeVisible() {
-        AutomationPracticeLoginService.verifyPageLogin();
+    @When("Enter empty Email Address in Email-Address textbox")
+    public void enterEmptyEmailAddressInEmailAddressTextbox() {
+        LoginService.verifyTextboxEmail();
+    }
+
+    @Then("se muestra el mensaje de error (.*)")
+    public void registrationMustFailWithAWarningMessageMessage(String msg) {
+        LoginService.verificarMensajeError(msg);
+    }
+
+    @When("El usuario no completa los campos email y password y realiza un click en Register")
+    public void elUsuarioNoCompletaLosCamposEmailYPasswordYRealizaUnClickEnRegister() {
+        LoginService.clickRegister();
     }
 }

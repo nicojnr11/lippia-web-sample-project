@@ -1,12 +1,15 @@
 package lippia.web.services;
 
 import com.crowdar.core.actions.ActionManager;
+import com.crowdar.core.actions.WebActionManager;
 import lippia.web.constants.LoginPageConstants;
 import org.apache.commons.lang.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 
-public class AutomationPracticeLoginService extends ActionManager {
+public class LoginService extends ActionManager {
     public static void setEmailyPassword(String email, String password) {
         setInput(LoginPageConstants.INPUT_USER_EMAIL_ID,email);
         setInput(LoginPageConstants.INPUT_USER_PASSWORD_ID,password);
@@ -36,8 +39,8 @@ public class AutomationPracticeLoginService extends ActionManager {
     }
 
     public static void clickRegister() {
-        waitClickable(LoginPageConstants.BUTTON_REGISTER_XPATH);
-        click(LoginPageConstants.BUTTON_REGISTER_XPATH);
+        WebActionManager.waitVisibility(LoginPageConstants.BUTTON_REGISTER_XPATH);
+        WebActionManager.click(LoginPageConstants.BUTTON_REGISTER_XPATH);
     }
 
     public static void setRegisterPassword(String password) {
@@ -49,12 +52,16 @@ public class AutomationPracticeLoginService extends ActionManager {
         setInput(LoginPageConstants.INPUT_REGISTER_EMAIL_ID,emailRandom+email);
     }
 
-    public static void singOut() {
-    }
-
-    public static void gotoBack() {
-    }
-
     public static void verifyPageLogin() {
+        waitVisibility(LoginPageConstants.BUTTON_LOGIN_XPATH);
+        Assert.assertTrue(isVisible(LoginPageConstants.BUTTON_LOGIN_XPATH));
+    }
+
+    public static void verifyTextboxPassword() {
+        Assert.assertTrue(isVisible(LoginPageConstants.INPUT_REGISTER_PASSWORD_ID));
+    }
+
+    public static void verifyTextboxEmail() {
+        Assert.assertTrue(isVisible(LoginPageConstants.INPUT_REGISTER_EMAIL_ID));
     }
 }
